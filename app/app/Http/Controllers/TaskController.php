@@ -77,4 +77,22 @@ class TaskController extends Controller
             'id' => $task->folder_id,
         ]);
     }
+
+    public function showDeleteForm(int $id, int $task_id)
+    {
+        $task = Task::find($task_id);
+
+        return view('tasks/delete', ['task' => $task,]);
+    }
+
+    public function delete(int $id, int $task_id)
+    {
+        $task = Task::find($task_id);
+        Task::destroy('task_id', $task_id);
+        return redirect()->route('tasks.index', [
+            'id' => $task->folder_id,
+        ]);
+    }
+
+
 }
