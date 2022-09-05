@@ -22,7 +22,7 @@
                         @endforeach
                     </div>
                     <div class="panel-body">
-                        <a href="{{ route('folders.delete', ['id' => $current_folder->id,]) }}" class="btn btn-danger btn-block">
+                        <a href="{{ route('folders.delete', ['id' => $current_folder->id,]) }}" class="btn btn-warning btn-block">
                             選択中のフォルダを削除する
                         </a>
                     </div>
@@ -62,6 +62,13 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="panel-body">
+                <a href="{{ route('folders.refresh') }}" class="btn btn-danger btn-block">
+                    ユーザーの全データを消去する
+                </a>
             </div>
         </div>
     </div>

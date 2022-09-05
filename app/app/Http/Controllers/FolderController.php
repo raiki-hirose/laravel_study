@@ -42,11 +42,19 @@ class FolderController extends Controller
     public function delete(int $id)
     {
         $folder = Folder::find($id);
-        Task::where('folder_id', $id)->delete();
+        Task::where('folder_id', $id)->truncate();
         Folder::destroy('id', $id);
 
-        return redirect()->route('tasks.index', [
-            'id' => 1,
-        ]);
+        return redirect()->route('home');
+    }
+
+    public function showRefreshForm()
+    {
+        return view('folders/refresh');
+    }
+
+    public function refresh()
+    {
+        return redirect()->route('home');
     }
 }
