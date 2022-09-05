@@ -89,8 +89,9 @@ class TaskController extends Controller
     {
         $task = Task::find($task_id);
         Task::destroy('task_id', $task_id);
+
         return redirect()->route('tasks.index', [
-            'id' => $task->folder_id,
+            'id' => 1,
         ]);
     }
 

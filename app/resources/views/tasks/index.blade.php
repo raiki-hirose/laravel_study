@@ -21,6 +21,11 @@
                             </a>
                         @endforeach
                     </div>
+                    <div class="panel-body">
+                        <a href="{{ route('folders.delete', ['id' => $current_folder->id,]) }}" class="btn btn-danger btn-block">
+                            選択中のフォルダを削除する
+                        </a>
+                    </div>
                 </nav>
             </div>
             <div class="column col-md-8">
