@@ -41,7 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    pubilc function folders()
+    function folders()
     {
         return $this->hasMany('App\Models\Folder');
     }
