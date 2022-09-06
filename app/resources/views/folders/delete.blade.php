@@ -16,7 +16,7 @@
         </div>
     </div>
     <form
-        action="{{ route('folders.delete', ['id' => $id]) }}"
+        action="{{ route('folders.delete', ['folder' => $folder]) }}"
         method="POST"
     >
         @csrf

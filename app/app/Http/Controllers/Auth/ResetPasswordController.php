@@ -27,4 +27,10 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    public function reset()
+    {
+        return redirect()->route('home');
+    }
+
 }

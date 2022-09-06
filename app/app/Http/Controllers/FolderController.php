@@ -28,24 +28,21 @@ class FolderController extends Controller
         Auth::user()->folders()->save($folder);
 
         return redirect()->route('tasks.index', [
-            'id' => $folder->id,
+            'folder' => $folder,
         ]);
     }
 
-    public function showDeleteForm(int $id)
+    public function showDeleteForm(Folder $folder)
     {
-        $folder = Folder::find($id);
-
         return view('folders/delete', [
-            'id' => $folder->id,
+            'folder' => $folder,
         ]);
     }
 
-    public function delete(int $id)
+    public function delete(Folder $folder)
     {
-        $folder = Folder::find($id);
-        Task::where('folder_id', $id)->truncate();
-        Folder::destroy('id', $id);
+        Task::where('folder_id', $folder->id)->truncate();
+        Folder::destroy('id', $folder->id);
 
         return redirect()->route('home');
     }

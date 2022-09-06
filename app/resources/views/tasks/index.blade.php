@@ -14,15 +14,15 @@
                     <div class="list-group">
                         @foreach($folders as $folder)
                             <a
-                                href="{{ route('tasks.index', ['id' => $folder->id]) }}"
-                                class="list-group-item {{ $current_folder->id === $folder->id ? 'active' : '' }}"
+                                href="{{ route('tasks.index', ['folder' => $folder]) }}"
+                                class="list-group-item {{ $current_folder_id === $folder->id ? 'active' : '' }}"
                             >
                                 {{ $folder->title }}
                             </a>
                         @endforeach
                     </div>
                     <div class="panel-body">
-                        <a href="{{ route('folders.delete', ['id' => $current_folder->id,]) }}" class="btn btn-warning btn-block">
+                        <a href="{{ route('folders.delete', ['folder' => $folder]) }}" class="btn btn-warning btn-block">
                             選択中のフォルダを削除する
                         </a>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="panel-heading">タスク</div>
                     <div class="panel-body">
                         <div class="text-right">
-                            <a href="{{ route('tasks.create', ['id' => $current_folder->id]) }}" class="btn btn-default btn-block">
+                            <a href="{{ route('tasks.create', ['folder' => $folder]) }}" class="btn btn-default btn-block">
                                 タスクを追加する
                             </a>
                         </div>
@@ -55,8 +55,8 @@
                                     <span class="label">{{ $task->status_label }}</span>
                                 </td>
                                 <td>{{ $task->formatted_due_date }}</td>
-                                <td><a href="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id]) }}">編集</a></td>
-                                <td><a href="{{ route('tasks.delete', ['id' => $task->folder_id, 'task_id' => $task->id]) }}">削除</a></td>
+                                <td><a href="{{ route('tasks.edit', ['folder' => $folder, 'task' => $task]) }}">編集</a></td>
+                                <td><a href="{{ route('tasks.delete', ['folder' => $folder, 'task' => $task]) }}">削除</a></td>
                             </tr>
                         @endforeach
                         </tbody>
