@@ -64,12 +64,10 @@
                 </div>
             </div>
         </div>
-        <div class="">
-            <div class="panel-body">
-                <a href="{{ route('folders.refresh') }}" class="btn btn-danger btn-block">
-                    ユーザーの全データを消去する
-                </a>
-            </div>
+        <div class="text-center">
+            <a href="{{ route('folders.refresh') }}" class="btn btn-danger">
+                <b>全データを消去する</b>
+            </a>
         </div>
     </div>
 @endsection

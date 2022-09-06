@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Folder;
 use App\Models\Task;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFolder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FolderController extends Controller
 {
@@ -55,6 +57,15 @@ class FolderController extends Controller
 
     public function refresh()
     {
+        Model::unguard();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        Task::truncate();
+        Folder::truncate();
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Model::reguard();
+
         return redirect()->route('home');
     }
 }

@@ -1,9 +1,16 @@
+@extends('layout')
+
+@section('styles')
+    @include('share.flatpickr.styles')
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col col-md-offset-3 col-md-6">
                 <nav class="panel panel-default">
-                    <div class="panel-heading"><b>全てのフォルダーとタスクのデータを削除しますか？</b></div>
+                    <div class="panel-heading"><b>全てのフォルダーとタスクのデータを消去しますか？</b></div>
+                    <div class="panel-heading"><b>※消去したデータは復元できません</b></div>
                 </nav>
             </div>
         </div>
