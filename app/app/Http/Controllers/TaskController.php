@@ -51,6 +51,8 @@ class TaskController extends Controller
 
     public function showEditForm(Folder $folder, Task $task)
     {
+        $this->checkRelation($folder, $task);
+
         return view('tasks/edit', [
             'folder' => $folder,
             'task' => $task,
@@ -59,6 +61,8 @@ class TaskController extends Controller
 
     public function edit(Folder $folder, Task $task, EditTask $request)
     {
+        $this->checkRelation($folder, $task);
+
         $task->title = $request->title;
         $task->status = $request->status;
         $task->due_date = $request->due_date;
@@ -73,6 +77,8 @@ class TaskController extends Controller
 
     public function showDeleteForm(Folder $folder, Task $task)
     {
+        $this->checkRelation($folder, $task);
+
         return view('tasks/delete', [
             'folder' => $folder,
             'task' => $task,
@@ -81,6 +87,8 @@ class TaskController extends Controller
 
     public function delete(Folder $folder, Task $task)
     {
+        $this->checkRelation($folder, $task);
+
         Task::destroy('task_id', $task->id);
 
         return redirect()->route('tasks.index', [
@@ -89,5 +97,10 @@ class TaskController extends Controller
         ]);
     }
 
-
+    private function checkRelation(Folder $folder, Task $task)
+    {
+        if ($folder->id !== $task->folder_id) {
+            abort(404);
+        }
+    }
 }
