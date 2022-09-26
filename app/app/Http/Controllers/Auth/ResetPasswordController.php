@@ -28,9 +28,4 @@ class ResetPasswordController extends Controller
      */
     protected $redirectTo = '/';
 
-    public function reset()
-    {
-        return redirect()->route('home');
-    }
-
 }
