@@ -7,14 +7,35 @@
                 <nav class="panel panel-default">
                     <div class="panel-heading">パスワード再発行</div>
                     <div class="panel-body">
+                        @if ($errors->has('token'))
+                            <div class="alert alert-danger">
+                                @foreach ($errors->get('token') as $error)
+                                    <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
                         <form action="{{ route('password.update') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="email">メールアドレス</label>
+                                @if ($errors->has('email'))
+                                    <div class="alert alert-danger">
+                                    @foreach ($errors->get('email') as $error)
+                                        <p>{{ $error }}</p>
+                                    @endforeach
+                                    </div>
+                                @endif
                                 <input type="text" class="form-control" id="email" name="email" />
                             </div>
                             <div class="form-group">
                                 <label for="password">新しいパスワード</label>
+                                @if ($errors->has('password'))
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors->get('password') as $error)
+                                            <p>{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <input type="password" class="form-control" id="password" name="password" />
                             </div>
                             <div class="form-group">

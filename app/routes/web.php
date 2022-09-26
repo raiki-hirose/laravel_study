@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Providers\AuthServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,21 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
+    //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
     Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
     Route::post('/folders/create', 'FolderController@create');
-    Route::get('/folders/{id}/delete', 'FolderController@showDeleteForm')->name('folders.delete');
-    Route::post('/folders/{id}/delete', 'FolderController@delete');
     Route::get('/folders/refresh', 'FolderController@showRefreshForm')->name('folders.refresh');
     Route::post('/folders/refresh', 'FolderController@refresh');
 
-    Route::get('/folders/{id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
-    Route::post('/folders/{id}/tasks/create', 'TaskController@create');
-    Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
-    Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
-    Route::get('/folders/{id}/tasks/{task_id}/delete', 'TaskController@showDeleteForm')->name('tasks.delete');
-    Route::post('/folders/{id}/tasks/{task_id}/delete', 'TaskController@delete');
+    Route::group(['middleware' => 'can:view,folder'], function() {
+        Route::get('/folders/{folder}/delete', 'FolderController@showDeleteForm')->name('folders.delete');
+        Route::post('/folders/{folder}/delete', 'FolderController@delete');
+
+        Route::get('/folders/{folder}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
+        Route::post('/folders/{folder}/tasks/create', 'TaskController@create');
+        Route::get('/folders/{folder}/tasks/{task}/edit', 'TaskController@showEditForm')->name('tasks.edit');
+        Route::post('/folders/{folder}/tasks/{task}/edit', 'TaskController@edit');
+        Route::get('/folders/{folder}/tasks/{task}/delete', 'TaskController@showDeleteForm')->name('tasks.delete');
+        Route::post('/folders/{folder}/tasks/{task}/delete', 'TaskController@delete');
+    });
 });
 
 Auth::routes();

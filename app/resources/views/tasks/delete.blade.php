@@ -15,7 +15,7 @@
         </div>
     </div>
     <form
-        action="{{ route('tasks.delete', ['id' => $task->folder_id, 'task_id' => $task->id]) }}"
+        action="{{ route('tasks.delete', ['folder' => $folder, 'task' => $task]) }}"
         method="POST"
     >
         @csrf
