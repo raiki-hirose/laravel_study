@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Folder;
 use App\Models\Task;
+use App\Models\Archive;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFolder;
@@ -58,6 +59,7 @@ class FolderController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         Task::truncate();
+        Archive::truncate();
         Folder::truncate();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');

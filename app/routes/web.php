@@ -33,6 +33,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/folders/{folder}/tasks/{task}/edit', 'TaskController@edit');
         Route::get('/folders/{folder}/tasks/{task}/delete', 'TaskController@showDeleteForm')->name('tasks.delete');
         Route::post('/folders/{folder}/tasks/{task}/delete', 'TaskController@delete');
+
+        Route::get('/folders/{folder}/archives/create', 'ArchiveController@showCreateForm')->name('archives.create');
+        Route::post('/folders/{folder}/archives/create', 'ArchiveController@create');
+        Route::get('/folders/{folder}/archives/{archive}/delete', 'ArchiveController@showDeletePage')->name('archives.delete');
+        Route::post('/folders/{folder}/archives/{archive}/delete', 'ArchiveController@delete');
+
     });
 });
 

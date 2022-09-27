@@ -24,7 +24,7 @@ class CreateTask extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:100',
+            'title' => 'required|max:20',
             'due_date' => 'required|date|after_or_equal:today',
         ];
     }

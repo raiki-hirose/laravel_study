@@ -10,4 +10,9 @@ class Folder extends Model
     {
         return $this->hasMany('App\Models\Task');
     }
+
+    public function archives()
+    {
+        return $this->hasMany('App\Models\Archive');
+    }
 }
