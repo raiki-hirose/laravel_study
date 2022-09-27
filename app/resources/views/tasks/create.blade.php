@@ -30,7 +30,6 @@
                                     </div>
                                 @endif
                                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" />
-
                             </div>
                             <div class="form-group">
                                 <label for="due_date">期限</label>
