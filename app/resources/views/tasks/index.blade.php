@@ -7,7 +7,7 @@
                 <nav class="panel panel-default">
                     <div class="panel-heading">フォルダ</div>
                     <div class="panel-body">
-                        <a href="{{ route('folders.create') }}" class="btn btn-default btn-block">
+                        <a href="{{ route('folders.create') }}" class="btn btn-primary btn-block">
                             フォルダを追加する
                         </a>
                     </div>
@@ -22,7 +22,7 @@
                         @endforeach
                     </div>
                     <div class="panel-body">
-                        <a href="{{ route('folders.delete', ['folder' => $folder]) }}" class="btn btn-warning btn-block">
+                        <a href="{{ route('folders.delete', ['folder' => $folder]) }}" class="btn btn-dark btn-block">
                             選択中のフォルダを削除する
                         </a>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="panel-heading">進行中タスク</div>
                     <div class="panel-body">
                         <div class="text-right">
-                            <a href="{{ route('tasks.create', ['folder' => $folder]) }}" class="btn btn-default btn-block">
+                            <a href="{{ route('tasks.create', ['folder' => $folder]) }}" class="btn btn-info btn-block">
                                 タスクを追加する
                             </a>
                         </div>
@@ -67,7 +67,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">タスクアーカイブ</div>
                     <div class="panel-body">
-                        <a href="{{ route('archives.create', ['folder' => $folder]) }}" class="btn btn-info btn-block">アーカイブに追加する</a>
+                        <a href="{{ route('archives.create', ['folder' => $folder]) }}" class="btn btn-default btn-block">アーカイブに追加する</a>
                     </div>
                     <table class="table table-info">
                         <thead>
